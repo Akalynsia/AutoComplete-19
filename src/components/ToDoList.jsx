@@ -20,9 +20,16 @@ export default function ToDoList() {
     setNewItemInput(event.target.value);
   }
 
-  if (typeof window !== "undefined") {
-    const div = document.querySelector(".to-do-list-container");
-  }
+  const div = document.querySelector(".to-do-list-container");
+
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      const div = document.querySelector(".to-do-list-container");
+      if (div) {
+        div.scrollTop = div.scrollHeight;
+      }
+    }
+  }, [listData]);
 
   useEffect(() => {
     if (div) {
