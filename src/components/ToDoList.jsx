@@ -48,11 +48,6 @@ export default function ToDoList() {
 
   function autoComplete() {
     setAutoCompleteRequested(true);
-    setListData((prevData) => {
-      return prevData.map((item) => {
-        return { ...item, complete: true };
-      });
-    });
   }
 
   useEffect(() => {
@@ -61,10 +56,12 @@ export default function ToDoList() {
         setAutoCompleteRequested(false);
         setListData((prevData) => {
           return prevData.map((item) => {
-            return !item.complete ? { ...item, complete: true } : item;
+            return { ...item, complete: true };
           });
         });
       }, 2000);
+
+      return () => clearTimeout(timeOut);
     }
   }, [autoCompleteRequested]);
 
@@ -87,11 +84,21 @@ export default function ToDoList() {
     return (
       <div className="to-do-list-item-container" key={item.id}>
         <label className="checkbox-label">
-          <input
-            type="checkbox"
-            name={item.id}
-            onChange={handleCheckBoxChange}
-          />
+          {autoCompleteRequested ? (
+            <input
+              type="checkbox"
+              name={item.id}
+              onChange={handleCheckBoxChange}
+              checked
+            />
+          ) : (
+            <input
+              type="checkbox"
+              name={item.id}
+              onChange={handleCheckBoxChange}
+            />
+          )}
+
           <span className="checkmark"></span>
           <p
             className={`to-do-list-item-text ${item.complete && "crossed-out"}`}
@@ -126,6 +133,7 @@ export default function ToDoList() {
             onChange={handleNewItemInputChange}
             onFocus={() => setInputFocused(true)}
             onBlur={() => setInputFocused(false)}
+            value={newItemInput}
           />
         </label>
       </div>
