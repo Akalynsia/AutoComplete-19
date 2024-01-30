@@ -20,22 +20,22 @@ export default function ToDoList() {
     setNewItemInput(event.target.value);
   }
 
-  const div = document.querySelector(".to-do-list-container");
+  // const div = document.querySelector(".to-do-list-container");
 
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      const div = document.querySelector(".to-do-list-container");
-      if (div) {
-        div.scrollTop = div.scrollHeight;
-      }
-    }
-  }, [listData]);
+  // useEffect(() => {
+  //   if (typeof document !== "undefined") {
+  //     const div = document.querySelector(".to-do-list-container");
+  //     if (div) {
+  //       div.scrollTop = div.scrollHeight;
+  //     }
+  //   }
+  // }, [listData]);
 
-  useEffect(() => {
-    if (div) {
-      div.scrollTop = div.scrollHeight;
-    }
-  }, [listData]);
+  // useEffect(() => {
+  //   if (div) {
+  //     div.scrollTop = div.scrollHeight;
+  //   }
+  // }, [listData]);
 
   /**** En Alakalı Kod **************************************************************************/
 
