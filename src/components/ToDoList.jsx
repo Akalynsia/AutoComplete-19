@@ -20,7 +20,9 @@ export default function ToDoList() {
     setNewItemInput(event.target.value);
   }
 
-  const div = document.querySelector(".to-do-list-container");
+  if (typeof window !== "undefined") {
+    const div = document.querySelector(".to-do-list-container");
+  }
 
   useEffect(() => {
     if (div) {
